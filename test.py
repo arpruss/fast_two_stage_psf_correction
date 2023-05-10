@@ -44,13 +44,16 @@ def Options():
     parser.add_argument('--sigma_s', default=200, type=float)
     parser.add_argument('--sigma_r', default=0.1, type=float)
 
+    # Device
+    parser.add_argument('--device', default="cuda:0", type=str)
+
     return parser
 
 
 opts = Options()
 args = opts.parse_args()
 
-device = torch.device('cuda:0')
+device = torch.device(args.device)
 print('Will run on', device)
 
 
@@ -85,6 +88,8 @@ print('  --b:                   %1.3f' % args.b)
 print('Domain transform parameters')
 print('  --sigma_s:             %3.2f' % args.sigma_s)
 print('  --sigma_r:             %1.2f' % args.sigma_r)
+print('Device')
+print('  --device:              %s' % args.device)
 print()
 
 ## Load the model
